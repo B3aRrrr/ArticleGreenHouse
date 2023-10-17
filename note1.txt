@@ -1,0 +1,87 @@
+# Заданные значения для примера (можно заменить конкретными данными)
+# Примем, что мы находимся в теплице с черноземной почвой.
+
+# Солнечная радиация
+solar_radiation = 600  # Вт/м² (пример значения солнечной радиации)
+
+# Коэффициент абсорбции почвы (в зависимости от свойств почвы)
+solar_absorption_coeff = 0.3  # Примерный коэффициент абсорбции для чернозема
+
+# Влажность воздуха и влажность почвы
+air_humidity = 60  # Проценты (пример значения влажности воздуха)
+soil_moisture = 30  # Проценты (пример значения влажности почвы)
+
+# Коэффициент взаимодействия влажности воздуха и влажности почвы
+humidity_interaction_coeff = 0.02  # Примерный коэффициент взаимодействия
+
+# Температура воздуха и температура почвы
+T_air = 25  # градусы Цельсия (пример значения температуры воздуха)
+T_soil = 20  # градусы Цельсия (пример значения температуры почвы)
+
+# Коэффициент теплообмена (зависит от свойств почвы и воздуха)
+heat_exchange_coeff = 0.1  # Примерный коэффициент теплообмена
+
+# Используем формулы для вычислений
+# Теплообмен
+heat_exchange = heat_exchange_coeff * (T_air - T_soil)
+
+# Солнечная радиация
+solar_radiation_effect = solar_absorption_coeff * solar_radiation
+
+# Влажность воздуха и влажность почвы
+humidity_effect = humidity_interaction_coeff * (air_humidity - soil_moisture)
+
+
+# Моделирование параметров почвы
+
+# Параметры почвы и питательного раствора
+soil_type = "Чернозем"  # Тип почвы
+nutrient_solution_N = 20.0  # Содержание азота в питательном растворе в ppm
+nutrient_solution_P = 10.0  # Содержание фосфора в питательном растворе в ppm
+nutrient_solution_K = 30.0  # Содержание калия в питательном растворе в ppm
+nutrient_solution_Mg = 5.0  # Содержание магния в питательном растворе в ppm
+nutrient_solution_Ca = 15.0  # Содержание кальция в питательном растворе в ppm
+
+# Физические и химические коэффициенты
+specific_N_absorption_coeff = 0.02  # Специфичный коэффициент абсорбции азота черноземом
+chemical_reaction_coeff = 0.005  # Коэффициент химической реакции
+humidity_effect = 0.03  # Влияние влажности на содержание фосфора
+solar_radiation_effect = 0.001  # Влияние солнечной радиации на концентрацию азота и калия
+
+# Текущие концентрации элементов в почве (начальные значения)
+current_N_concentration = 10.0  # Начальная концентрация азота в почве в ppm
+current_P_concentration = 5.0  # Начальная концентрация фосфора в почве в ppm
+current_K_concentration = 25.0  # Начальная концентрация калия в почве в ppm
+current_Mg_concentration = 3.0  # Начальная концентрация магния в почве в ppm
+current_Ca_concentration = 12.0  # Начальная концентрация кальция в почве в ppm
+
+# Время моделирования (часы)
+time = 24
+
+# Моделирование изменения концентрации азота (N) в почве
+delta_N = (solar_radiation_effect * time) / (specific_N_absorption_coeff * humidity_effect)
+new_N_concentration = current_N_concentration + delta_N
+
+# Моделирование изменения концентрации фосфора (P) в почве
+delta_P = (humidity_effect + nutrient_solution_P) * time
+new_P_concentration = current_P_concentration + delta_P
+
+# Моделирование изменения концентрации калия (K) в почве
+delta_K = (solar_radiation_effect * time) - (chemical_reaction_coeff * current_K_concentration)
+new_K_concentration = current_K_concentration + delta_K
+
+# Моделирование изменения концентрации магния (Mg) в почве
+delta_Mg = (nutrient_solution_Mg - current_Mg_concentration) * time
+new_Mg_concentration = current_Mg_concentration + delta_Mg
+
+# Моделирование изменения концентрации кальция (Ca) в почве
+delta_Ca = (chemical_reaction_coeff * nutrient_solution_Ca) * time
+new_Ca_concentration = current_Ca_concentration + delta_Ca
+
+# Вывод результатов
+print(f"Моделирование параметров почвы для {soil_type}:")
+print(f"Новая концентрация азота (N) в почве: {new_N_concentration} ppm")
+print(f"Новая концентрация фосфора (P) в почве: {new_P_concentration} ppm")
+print(f"Новая концентрация калия (K) в почве: {new_K_concentration} ppm")
+print(f"Новая концентрация магния (Mg) в почве: {new_Mg_concentration} ppm")
+print(f"Новая концентрация кальция (Ca) в почве: {new_Ca_concentration} ppm")
