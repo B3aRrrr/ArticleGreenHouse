@@ -19,8 +19,7 @@ sys.path.append(
  
 
 from .calcsMethods import *
-import cProfile  as cProfile  # Импортируем cProfile
-
+import cProfile  as cProfile 
  
 obs_params_names = [
     'T_soil',
