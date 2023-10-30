@@ -30,7 +30,7 @@ google-auth-oauthlib==1.0.0
 google-pasta==0.2.0
 greenlet==3.0.0
 grpcio==1.59.0
-gym==0.25.0
+gym==0.26.0
 gym-notices==0.0.8
 gymnasium==0.29.1
 h5py==3.10.0

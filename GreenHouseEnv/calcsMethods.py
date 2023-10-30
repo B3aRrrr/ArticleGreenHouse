@@ -35,8 +35,7 @@ def calculate_gradient(arr, axis):
 def heat_equation(t, T, r, z, alpha_r, alpha_z, T_air):
     
     dT_dr = alpha_r * (1 / r) * calculate_gradient(r * calculate_gradient(T.reshape((GRID_SIZE, GRID_SIZE)), axis=1), axis=1)
-    dT_dz = alpha_z * (1 / z) * calculate_gradient(calculate_gradient(T.reshape((GRID_SIZE, GRID_SIZE)), axis=0), axis=0)
-    # print(np.random.uniform(HEAT_EXCHANGE_COEFF[0],HEAT_EXCHANGE_COEFF[1]).shape)
+    dT_dz = alpha_z * (1 / z) * calculate_gradient(calculate_gradient(T.reshape((GRID_SIZE, GRID_SIZE)), axis=0), axis=0) 
     heat_exchange = (T_air - T) * np.random.uniform(HEAT_EXCHANGE_COEFF[0],HEAT_EXCHANGE_COEFF[1])
     dT_dt = (dT_dr + dT_dz).flatten() + heat_exchange.flatten()
     return dT_dt

@@ -1,5 +1,9 @@
+.idea
+notebooks/*
 pcse/*
 pcse_gym/*
-venv/*
 gits/*
-tensorboard_logs
+tensorboard_logs/*
+note*.txt
+docs/*
+venv/*
