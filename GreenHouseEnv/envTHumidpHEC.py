@@ -25,7 +25,7 @@ obs_params_names = [
     'T_soil',
     'humid_soil',
     'pH','EC', 
-    'pH_mix','EC_mix', 
+    # 'pH_mix','EC_mix', 
     ]
 low = np.array([
             15, # T_soil [°C]
@@ -163,8 +163,8 @@ class GreenHousePCSEEnvVer2(gym.Env):
         for var in self.__class__._additional_variables:
             observation_space[var] = self._get_default_space(var, self._timestep)
         # MIXTURE
-        for var in ['pH_mix','EC_mix']:
-            observation_space[var] = self._get_default_space(var, self._timestep)   
+        # for var in ['pH_mix','EC_mix']:
+        #     observation_space[var] = self._get_default_space(var, self._timestep)   
         space = gym.spaces.Dict(observation_space) 
         return space
 
